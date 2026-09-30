@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Auflagerkräfte – vom Einstieg zum Experten</title>
+<style>
+:root{--blue:#0b5ea8;--dark:#17324d;--light:#eef5fb;--green:#17834b;--red:#b42318;--orange:#b75b00;--border:#cfd9e3;--muted:#5b6875;--bg:#f5f7f9}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#17212b;background:var(--bg);line-height:1.55}
+header{background:linear-gradient(120deg,#17324d,#0b5ea8);color:#fff;padding:30px 20px}.wrap,main{max-width:1160px;margin:auto}
+.kicker{font-size:.9rem;opacity:.86}.lead{max-width:900px;font-size:1.05rem}
+nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);z-index:10;padding:8px;text-align:center}
+nav a{display:inline-block;margin:4px 7px;color:var(--blue);font-weight:700;text-decoration:none;font-size:.92rem}
+main{padding:20px}.card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px;margin:18px 0}
+h2{color:var(--dark);margin-top:0}h3{color:#244761}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+.note,.tip,.warning{padding:12px 14px;border-radius:8px;margin:10px 0}.note{background:var(--light);border-left:5px solid var(--blue)}
+.tip{background:#eaf7ef;border-left:5px solid var(--green)}.warning{background:#fff3e8;border-left:5px solid var(--orange)}
+.formula{font-size:1.12rem;background:#f7f8fa;border:1px solid var(--border);padding:10px;border-radius:8px;text-align:center;margin:8px 0}
+label{display:block;font-weight:600;margin:8px 0 4px}input,select{width:100%;padding:10px;border:1px solid #9ba9b5;border-radius:8px;font-size:16px}
+button{border:0;border-radius:8px;padding:10px 14px;background:var(--blue);color:#fff;font-weight:700;cursor:pointer;margin:8px 6px 0 0}
+button.secondary{background:#536579}button.ghost{background:#eef2f5;color:#17324d;border:1px solid var(--border)}
+.result{margin-top:12px;padding:12px;border-radius:8px;background:var(--light);min-height:45px}.good{background:#eaf7ef;color:#105c35}.bad{background:#fff0ef;color:#8b1e16}
+.small{font-size:.91rem;color:var(--muted)}svg.diagram{width:100%;height:auto;background:#fff;border:1px solid var(--border);border-radius:10px;margin:8px 0}
+.quiz-q{padding:14px 0;border-bottom:1px solid var(--border)}.quiz-q:last-child{border:0}.quiz-q label{font-weight:400}
+.progress{height:10px;background:#e4e9ee;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;background:var(--green);width:0}
+details{margin:10px 0;border:1px solid var(--border);border-radius:8px;padding:10px;background:#fff}summary{cursor:pointer;font-weight:700;color:#244761}
+.exercise{border:1px solid var(--border);border-radius:12px;padding:16px;background:#fff}.exercise h3{margin-top:0}.level{display:inline-block;font-size:.78rem;font-weight:bold;padding:3px 8px;border-radius:99px;background:#e8eef4;color:#334b60}
+.step{display:grid;grid-template-columns:42px 1fr;gap:10px;align-items:start;margin:12px 0}.stepnum{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--dark);color:#fff;font-weight:bold}
+table{width:100%;border-collapse:collapse}th,td{padding:8px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.tabs button.active{background:var(--dark)}
+.load-row{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end;margin:8px 0}.load-row button{margin:0 0 1px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.9rem}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}
+.badge{font-size:.8rem;padding:2px 7px;border-radius:99px;background:#eef2f5}.checklist li{margin:7px 0}
+footer{text-align:center;color:#64717d;padding:30px}
+@media(max-width:650px){main{padding:11px}.card{padding:15px}.load-row{grid-template-columns:1fr}.load-row button{width:100%}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="kicker">Technische Mechanik · Interaktiver Lernpfad</div>
+<h1>Auflagerkräfte – vom Einstieg zum Experten</h1>
+<p class="lead">Du lernst Schritt für Schritt, technische Systeme freizuschneiden, Kräfte und Hebelarme richtig zu erfassen, Gleichgewichtsbedingungen aufzustellen und Auflagerkräfte sicher zu berechnen. Danach überträgst du das Verfahren auf reale technische Situationen und komplexere Systeme mit mehreren Einzelkräften.</p>
+</div></header>
+<nav>
+<a href="#einstieg">Einstieg</a><a href="#grundlagen">Grundlagen</a><a href="#freischnitt">Freischnitt</a><a href="#rechner">Rechner</a><a href="#praxis">Praxis</a><a href="#werkstatt">Übungswerkstatt</a><a href="#quiz">Expertencheck</a>
+</nav>
+<main>
+
+<section id="einstieg" class="card">
+<h2>1. Einstieg: Warum entstehen Auflagerkräfte?</h2>
+<div class="grid">
+<div><p>Ein Balken, eine Welle, ein Hebel oder eine Traverse kann äußere Lasten nur aufnehmen, wenn die Konstruktion abgestützt oder gelagert ist. Die Lager reagieren auf die Belastung mit <b>Auflagerkräften</b>.</p>
+<p>Das Grundprinzip ist einfach: Eine nach unten wirkende Belastung muss durch passende Reaktionskräfte und – je nach Lagerung – Reaktionsmomente ausgeglichen werden.</p>
+<div class="note"><b>Leitfrage:</b> Wie groß muss die Kraft an jedem Lager sein, damit sich das Bauteil weder verschiebt noch dreht?</div></div>
+<div>
+<svg class="diagram" viewBox="0 0 650 245" role="img" aria-label="Einfach gelagerter Balken mit Kraft und Auflagerreaktionen">
+<line x1="90" y1="115" x2="560" y2="115" stroke="#263746" stroke-width="8"/>
+<polygon points="110,120 80,175 140,175" fill="#dce5ec" stroke="#263746" stroke-width="2"/>
+<polygon points="540,120 510,165 570,165" fill="#dce5ec" stroke="#263746" stroke-width="2"/><circle cx="525" cy="177" r="8" fill="#dce5ec" stroke="#263746"/><circle cx="555" cy="177" r="8" fill="#dce5ec" stroke="#263746"/>
+<line x1="330" y1="35" x2="330" y2="105" stroke="#b42318" stroke-width="5"/><polygon points="330,115 318,93 342,93" fill="#b42318"/><text x="345" y="52" font-size="18" fill="#b42318">äußere Kraft F</text>
+<line x1="110" y1="108" x2="110" y2="60" stroke="#17834b" stroke-width="4"/><polygon points="110,50 98,72 122,72" fill="#17834b"/><text x="55" y="48" font-size="17">F_A</text>
+<line x1="540" y1="108" x2="540" y2="60" stroke="#17834b" stroke-width="4"/><polygon points="540,50 528,72 552,72" fill="#17834b"/><text x="550" y="48" font-size="17">F_B</text>
+<text x="101" y="210" font-size="18">A</text><text x="532" y="210" font-size="18">B</text>
+</svg>
+</div></div>
+</section>
+
+<section id="grundlagen" class="card">
+<h2>2. Grundlagen – das musst du sicher beherrschen</h2>
+<div class="grid">
+<div>
+<h3>Kraft und Gewichtskraft</h3>
+<p>Eine Kraft besitzt Betrag, Richtung und Angriffspunkt. Bei technischen Aufgaben entsteht eine Belastung häufig durch eine Masse. Aus der Masse wird zuerst die Gewichtskraft berechnet.</p>
+<div class="formula">F<sub>G</sub> = m · g &nbsp;&nbsp; mit &nbsp;&nbsp; g = 9,81 m/s²</div>
+<p class="small">Beispiel: 70 kg → F<sub>G</sub> = 70 kg · 9,81 m/s² = 686,7 N.</p>
+</div>
+<div>
+<h3>Drehmoment und Hebelarm</h3>
+<p>Eine Kraft kann ein Bauteil drehen. Entscheidend ist der <b>senkrechte Abstand</b> zwischen Drehpunkt und Wirkungslinie der Kraft.</p>
+<div class="formula">M = F · l</div>
+<p>Einheit: <b>N·m</b> oder bei passenden Aufgaben auch N·mm. Wichtig ist, innerhalb einer Rechnung konsequent dieselbe Längeneinheit zu verwenden.</p>
+</div>
+<div>
+<h3>Gleichgewicht</h3>
+<p>Ein ruhendes ebenes System erfüllt drei Gleichgewichtsbedingungen:</p>
+<div class="formula">ΣF<sub>x</sub> = 0</div><div class="formula">ΣF<sub>y</sub> = 0</div><div class="formula">ΣM = 0</div>
+<p>Bei rein senkrechten Lasten auf einem waagerechten Balken ist ΣF<sub>x</sub> = 0 meist sofort erfüllt.</p>
+</div>
+</div>
+<h3>Die drei typischen Lagerungen</h3>
+<div class="grid">
+<div class="exercise"><b>Loslager</b><p>Verhindert die Bewegung senkrecht zur Auflage. Im ebenen Standardfall entsteht <b>eine</b> Lagerreaktion.</p></div>
+<div class="exercise"><b>Festlager</b><p>Verhindert Verschiebungen in x- und y-Richtung. Es können <b>zwei Kraftkomponenten</b> auftreten.</p></div>
+<div class="exercise"><b>Einspannung</b><p>Verhindert Verschiebung und Verdrehung. Es entstehen <b>zwei Kraftkomponenten und ein Reaktionsmoment</b>.</p></div>
+</div>
+<div class="warning"><b>Fachlich wichtig:</b> Beim Freischneiden werden Lager durch ihre möglichen Reaktionsgrößen ersetzt. Erst danach werden Gleichgewichtsbedingungen aufgestellt. Ein Vorzeichen ist immer von der vorher festgelegten positiven Richtung bzw. Drehrichtung abhängig.</div>
+
+<h3>Strategie für einfach gelagerte Balken mit senkrechten Einzelkräften</h3>
+<div class="step"><div class="stepnum">1</div><div><b>System freischneiden.</b> Alle äußeren Kräfte, F<sub>A</sub> und F<sub>B</sub> einzeichnen.</div></div>
+<div class="step"><div class="stepnum">2</div><div><b>Hebelarme bestimmen.</b> Abstände immer vom gewählten Momentenpunkt bis zur Wirkungslinie der jeweiligen Kraft.</div></div>
+<div class="step"><div class="stepnum">3</div><div><b>Momentengleichgewicht aufstellen.</b> Zweckmäßig A oder B als Drehpunkt wählen. Die dort angreifende Lagerkraft besitzt dann den Hebelarm 0.</div></div>
+<div class="step"><div class="stepnum">4</div><div><b>Erste Lagerkraft berechnen.</b> Gleichung nach der verbleibenden unbekannten Lagerkraft umstellen.</div></div>
+<div class="step"><div class="stepnum">5</div><div><b>Zweite Lagerkraft bestimmen.</b> Vertikales Kräftegleichgewicht ΣF<sub>y</sub> = 0 verwenden.</div></div>
+<div class="step"><div class="stepnum">6</div><div><b>Kontrollieren.</b> Summe der aufwärts gerichteten Kräfte muss der Summe der abwärts gerichteten Kräfte entsprechen; alternativ Momentengleichgewicht um das andere Lager prüfen.</div></div>
+</section>
+
+<section id="freischnitt" class="card">
+<h2>3. Freischnitt verstehen – aus der Realität wird ein Rechenmodell</h2>
+<p>Der Freischnitt ist der entscheidende Übergang von einer technischen Situation zur Rechnung. Das betrachtete Bauteil wird gedanklich aus seiner Umgebung gelöst. Verbindungen und Lager werden durch die Kräfte ersetzt, die sie auf das Bauteil ausüben.</p>
+<div class="grid">
+<div>
+<h3>Vor dem Freischneiden</h3>
+<svg class="diagram" viewBox="0 0 560 240" aria-label="Technische Situation mit Balken und Last">
+<rect x="70" y="105" width="420" height="28" rx="4" fill="#758899"/><rect x="250" y="55" width="70" height="50" rx="5" fill="#d9b36c"/>
+<text x="257" y="86" font-size="15">Last</text><polygon points="105,135 75,185 135,185" fill="#dce5ec" stroke="#263746"/><polygon points="455,135 425,175 485,175" fill="#dce5ec" stroke="#263746"/>
+<circle cx="440" cy="187" r="8" fill="#dce5ec" stroke="#263746"/><circle cx="470" cy="187" r="8" fill="#dce5ec" stroke="#263746"/>
+</svg>
+</div>
+<div>
+<h3>Nach dem Freischneiden</h3>
+<svg class="diagram" viewBox="0 0 560 240" aria-label="Freikörperbild mit Gewichtskraft und Auflagerkräften">
+<line x1="70" y1="120" x2="490" y2="120" stroke="#263746" stroke-width="7"/>
+<line x1="285" y1="45" x2="285" y2="110" stroke="#b42318" stroke-width="5"/><polygon points="285,120 274,99 296,99" fill="#b42318"/><text x="300" y="55" font-size="16">F_G</text>
+<line x1="105" y1="115" x2="105" y2="65" stroke="#17834b" stroke-width="4"/><polygon points="105,55 94,76 116,76" fill="#17834b"/><text x="62" y="55" font-size="16">F_A</text>
+<line x1="455" y1="115" x2="455" y2="65" stroke="#17834b" stroke-width="4"/><polygon points="455,55 444,76 466,76" fill="#17834b"/><text x="465" y="55" font-size="16">F_B</text>
+<line x1="105" y1="170" x2="455" y2="170" stroke="#677" stroke-width="2"/><text x="270" y="195" font-size="15">l</text>
+</svg>
+</div></div>
+<div class="tip"><b>Merksatz:</b> Im Freikörperbild steht nur das freigeschnittene Bauteil mit allen Kräften, die von außen auf dieses Bauteil wirken. Kräfte, die für das betrachtete Bauteil nicht relevant sind, gehören nicht hinein.</div>
+<details><summary>Wie erkenne ich den richtigen Hebelarm?</summary><p>Der Hebelarm ist nicht automatisch eine eingezeichnete Bauteillänge. Er ist der senkrechte Abstand vom gewählten Drehpunkt zur Wirkungslinie der Kraft. Bei senkrechten Kräften auf einem waagerechten Balken entspricht er dem horizontalen Abstand.</p></details>
+<details><summary>Warum darf ich A als Momentenpunkt wählen?</summary><p>Das Momentengleichgewicht darf um jeden beliebigen Punkt aufgestellt werden. A ist oft geschickt, weil F<sub>A</sub> durch A verläuft und deshalb dort kein Moment erzeugt. Damit bleibt bei einem einfach gelagerten Balken häufig nur F<sub>B</sub> als unbekannte Größe in der Momentengleichung.</p></details>
+<details><summary>Was bedeutet ein negatives Ergebnis?</summary><p>Die Rechnung ist dadurch nicht automatisch falsch. Ein negatives Vorzeichen bedeutet, dass die tatsächliche Richtung der Kraft der zunächst angenommenen positiven Pfeilrichtung entgegengesetzt ist. Bei realen Lagern muss anschließend geprüft werden, ob das Lager diese Richtung technisch überhaupt aufnehmen kann.</p></details>
+</section>
+
+<section id="rechner" class="card">
+<h2>4. Interaktives Labor: Auflagerkräfte selbst untersuchen</h2>
+<div class="tabs"><button type="button" id="tabSingle" class="active">Eine Einzelkraft</button><button type="button" id="tabMulti">Mehrere Einzelkräfte</button></div>
+
+<div id="singlePanel">
+<div class="grid">
+<div>
+<label for="force">Kraft F [N]</label><input id="force" type="number" min="0" value="1000">
+<label for="length">Lagerabstand l [m]</label><input id="length" type="number" min="0.01" step="0.1" value="4">
+<label for="pos">Abstand der Kraft von A, a [m]</label><input id="pos" type="range" min="0" max="4" step="0.05" value="1">
+<div class="small">Position a = <b><span id="posOut">1.00</span> m</b></div>
+<button type="button" id="calc">Berechnen</button><button type="button" class="secondary" id="center">Last mittig setzen</button>
+</div>
+<div><div id="calcResult" class="result" aria-live="polite"></div><svg id="beamSvg" class="diagram" viewBox="0 0 620 245"></svg></div>
+</div>
+<div class="note"><b>Experiment:</b> Verschiebe die Kraft langsam von A nach B. Beobachte: Je näher die Kraft an einem Lager liegt, desto größer wird dessen Anteil. Bei mittiger Last gilt F<sub>A</sub> = F<sub>B</sub> = F/2.</div>
+</div>
+
+<div id="multiPanel" hidden>
+<p>Jetzt wird das Modell erweitert: Mehrere senkrechte Einzelkräfte wirken gleichzeitig auf einen einfach gelagerten Balken. Jede Kraft erzeugt um A ein eigenes Moment.</p>
+<div class="formula">ΣM<sub>A</sub> = 0 → F<sub>B</sub> · l = F₁ · a₁ + F₂ · a₂ + … + F<sub>n</sub> · a<sub>n</sub></div>
+<div class="formula">F<sub>B</sub> = (Σ Fᵢ · aᵢ) / l &nbsp;&nbsp;&nbsp; und &nbsp;&nbsp;&nbsp; F<sub>A</sub> = ΣFᵢ − F<sub>B</sub></div>
+<div class="grid">
+<div>
+<label for="multiLength">Lagerabstand l [m]</label><input id="multiLength" type="number" min="0.1" step="0.1" value="6">
+<div id="loads"></div>
+<button type="button" id="addLoad">+ Kraft hinzufügen</button><button type="button" id="multiCalc">System berechnen</button><button type="button" class="secondary" id="exampleLoads">Beispiel laden</button>
+</div>
+<div><div id="multiResult" class="result" aria-live="polite"></div><svg id="multiSvg" class="diagram" viewBox="0 0 700 300"></svg></div>
+</div>
+<div class="tip"><b>So liest du die Rechnung:</b> Die Einzelmomente werden algebraisch addiert. Bei allen hier eingegebenen Kräften wirkt die Last nach unten und liegt zwischen A und B. Deshalb erzeugen sie um A dieselbe Drehrichtung. F<sub>B</sub> erzeugt das ausgleichende Gegenmoment.</div>
+</div>
+</section>
+
+<section id="praxis" class="card">
+<h2>5. Praxisaufgaben aus technischen Situationen</h2>
+<p>Bearbeite die Aufgaben in der Reihenfolge. Die Abbildungen zeigen das jeweilige Rechenmodell eindeutig. Nutze Tipps erst, wenn du selbst einen Ansatz erstellt hast.</p>
+<div class="grid">
+
+<div class="exercise">
+<span class="level">Basis</span><h3>A · Gleitlager und Kübel</h3>
+<p>Zwei Gleitlager tragen über eine <b>2,5 m lange Stange</b> einen Kübel mit <b>m = 70 kg</b>. Die Tragarmlängen stehen im Verhältnis <b>1,5 : 2</b>. Bestimme die von den beiden Lagern aufzunehmenden Kräfte.</p>
+<svg class="diagram" viewBox="0 0 600 240">
+<line x1="80" y1="115" x2="520" y2="115" stroke="#263746" stroke-width="7"/><polygon points="100,120 75,165 125,165" fill="#dce5ec" stroke="#263746"/><polygon points="500,120 475,165 525,165" fill="#dce5ec" stroke="#263746"/>
+<line x1="329" y1="45" x2="329" y2="105" stroke="#b42318" stroke-width="5"/><polygon points="329,115 318,95 340,95" fill="#b42318"/><text x="344" y="55" font-size="16">F_G = m·g</text>
+<text x="175" y="150" font-size="14">l₂ ≈ 1,07 m</text><text x="365" y="150" font-size="14">l₁ ≈ 1,43 m</text><text x="270" y="205" font-size="14">l = 2,5 m</text>
+</svg>
+<details><summary>Tipp 1</summary><p>Berechne zuerst F<sub>G</sub>. Teile anschließend 2,5 m entsprechend dem Verhältnis 1,5 : 2 in 3,5 Verhältnisanteile auf.</p></details>
+<details><summary>Zwischenergebnisse</summary><p>F<sub>G</sub> = 686,7 N; l₂ ≈ 1,07 m; l₁ ≈ 1,43 m.</p></details>
+<details><summary>Lösung</summary><p>Mit ΣM<sub>A</sub> = 0 folgt F<sub>B</sub> ≈ <b>293,9 N</b>. Mit ΣF<sub>y</sub> = 0 folgt F<sub>A</sub> ≈ <b>392,8 N</b>.</p></details>
+</div>
+
+<div class="exercise">
+<span class="level">Basis</span><h3>B · Waagerechtfräsmaschine</h3>
+<p>Eine Frässpindel ist <b>350 mm</b> lang. Eine Fräskraft von <b>6 kN</b> greift <b>160 mm von Auflager A</b> entfernt an. Ermittle F<sub>A</sub> und F<sub>B</sub>.</p>
+<svg class="diagram" viewBox="0 0 600 235">
+<line x1="90" y1="115" x2="510" y2="115" stroke="#263746" stroke-width="7"/><polygon points="110,120 85,165 135,165" fill="#dce5ec" stroke="#263746"/><polygon points="490,120 465,165 515,165" fill="#dce5ec" stroke="#263746"/>
+<line x1="284" y1="45" x2="284" y2="105" stroke="#b42318" stroke-width="5"/><polygon points="284,115 273,95 295,95" fill="#b42318"/><text x="300" y="55" font-size="16">6 kN</text>
+<text x="170" y="150" font-size="14">160 mm</text><text x="310" y="150" font-size="14">190 mm</text><text x="255" y="205" font-size="14">350 mm</text>
+</svg>
+<details><summary>Tipp</summary><p>Momentengleichgewicht um A: 6 kN · 160 mm = F<sub>B</sub> · 350 mm.</p></details>
+<details><summary>Lösung</summary><p>F<sub>B</sub> ≈ <b>2,74 kN</b>; F<sub>A</sub> ≈ <b>3,26 kN</b>.</p></details>
+</div>
+
+<div class="exercise">
+<span class="level">Basis</span><h3>C · Belastete Welle</h3>
+<p>Eine <b>350 mm</b> lange Welle wird in <b>150 mm Entfernung von A</b> mit <b>8000 N</b> belastet. Bestimme die Lagerkräfte.</p>
+<svg class="diagram" viewBox="0 0 600 235">
+<line x1="90" y1="115" x2="510" y2="115" stroke="#263746" stroke-width="7"/><polygon points="110,120 85,165 135,165" fill="#dce5ec" stroke="#263746"/><polygon points="490,120 465,165 515,165" fill="#dce5ec" stroke="#263746"/>
+<line x1="273" y1="45" x2="273" y2="105" stroke="#b42318" stroke-width="5"/><polygon points="273,115 262,95 284,95" fill="#b42318"/><text x="290" y="55" font-size="16">8000 N</text>
+<text x="170" y="150" font-size="14">150 mm</text><text x="315" y="150" font-size="14">200 mm</text>
+</svg>
+<details><summary>Zwischenergebnis</summary><p>F<sub>B</sub> = 8000 N · 150 mm / 350 mm.</p></details>
+<details><summary>Lösung</summary><p>F<sub>B</sub> ≈ <b>3428,6 N</b>; F<sub>A</sub> ≈ <b>4571,4 N</b>.</p></details>
+</div>
+
+<div class="exercise">
+<span class="level">Anwendung</span><h3>D · Riemenscheibe auf einer Welle</h3>
+<p>Eine Scheibe mit <b>m = 600 kg</b> belastet eine <b>1,54 m</b> lange Welle. Die Position teilt den Lagerabstand im Verhältnis <b>3 : 4</b>. Berechne die Lagerkräfte.</p>
+<svg class="diagram" viewBox="0 0 600 235">
+<line x1="90" y1="115" x2="510" y2="115" stroke="#263746" stroke-width="7"/><circle cx="330" cy="105" r="36" fill="#d9b36c" stroke="#263746" stroke-width="2"/>
+<polygon points="110,120 85,165 135,165" fill="#dce5ec" stroke="#263746"/><polygon points="490,120 465,165 515,165" fill="#dce5ec" stroke="#263746"/>
+<line x1="330" y1="55" x2="330" y2="105" stroke="#b42318" stroke-width="4"/><polygon points="330,115 319,95 341,95" fill="#b42318"/>
+<text x="250" y="45" font-size="15">m = 600 kg</text><text x="180" y="155" font-size="14">0,66 m</text><text x="360" y="155" font-size="14">0,88 m</text>
+</svg>
+<details><summary>Zwischenergebnisse</summary><p>F = 600 kg · 9,81 m/s² = 5886 N. Aus 1,54 m und dem Verhältnis 3 : 4 folgen 0,66 m und 0,88 m.</p></details>
+<details><summary>Lösung</summary><p>F<sub>B</sub> ≈ <b>2522,6 N</b>; F<sub>A</sub> ≈ <b>3363,4 N</b>.</p></details>
+</div>
+
+<div class="exercise">
+<span class="level">Anwendung</span><h3>E · Schubkarre als Hebelsystem</h3>
+<p>An einem <b>1,6 m</b> langen Hebelarm einer Schubkarre wirkt an den Griffen eine Handkraft von <b>200 N nach oben</b>. Die Last liegt <b>260 mm vom Drehpunkt</b> entfernt. Bestimme die Lastkraft und die Reaktionskraft am Drehpunkt.</p>
+<svg class="diagram" viewBox="0 0 600 240">
+<circle cx="105" cy="140" r="28" fill="#dce5ec" stroke="#263746" stroke-width="3"/><line x1="105" y1="120" x2="515" y2="80" stroke="#263746" stroke-width="8"/>
+<line x1="515" y1="120" x2="515" y2="85" stroke="#17834b" stroke-width="5"/><polygon points="515,72 503,95 527,95" fill="#17834b"/><text x="465" y="145" font-size="15">200 N</text>
+<line x1="172" y1="45" x2="172" y2="112" stroke="#b42318" stroke-width="5"/><polygon points="172,122 161,101 183,101" fill="#b42318"/><text x="185" y="55" font-size="15">F_Last</text>
+<text x="115" y="185" font-size="14">260 mm</text><text x="310" y="205" font-size="14">1,6 m bis Handkraft</text>
+</svg>
+<details><summary>Tipp</summary><p>Momentengleichgewicht um den Drehpunkt am Rad: F<sub>Last</sub> · 0,26 m = 200 N · 1,6 m.</p></details>
+<details><summary>Lösung</summary><p>F<sub>Last</sub> ≈ <b>1230,8 N</b>. Aus dem Kräftegleichgewicht ergibt sich für die Reaktionskraft am Drehpunkt betragsmäßig etwa <b>1030,8 N</b> (Richtung gemäß gewähltem Freischnitt).</p></details>
+</div>
+
+<div class="exercise">
+<span class="level">Anwendung</span><h3>F · Spannhebel</h3>
+<p>Ein <b>100 mm</b> langer Spannhebel wird in <b>30 mm Entfernung von Auflager A</b> mit <b>11 kN</b> belastet. Bestimme die beiden Auflagerreaktionen.</p>
+<svg class="diagram" viewBox="0 0 600 230">
+<line x1="110" y1="115" x2="490" y2="115" stroke="#263746" stroke-width="7"/><polygon points="130,120 105,165 155,165" fill="#dce5ec" stroke="#263746"/><polygon points="470,120 445,165 495,165" fill="#dce5ec" stroke="#263746"/>
+<line x1="232" y1="45" x2="232" y2="105" stroke="#b42318" stroke-width="5"/><polygon points="232,115 221,95 243,95" fill="#b42318"/><text x="248" y="55" font-size="15">11 kN</text>
+<text x="160" y="150" font-size="14">30 mm</text><text x="310" y="150" font-size="14">70 mm</text><text x="260" y="200" font-size="14">100 mm</text>
+</svg>
+<details><summary>Lösung</summary><p>F<sub>B</sub> = <b>3,3 kN</b>; F<sub>A</sub> = <b>7,7 kN</b>.</p></details>
+</div>
+
+<div class="exercise">
+<span class="level">Fortgeschritten</span><h3>G · Spannvorrichtung</h3>
+<p>Ein Hebel ist insgesamt <b>200 mm</b> lang. Das Werkstück soll in <b>50 mm Entfernung</b> mit einer Presskraft von <b>9000 N</b> gehalten werden. Bestimme die notwendige Schraubenkraft gemäß dargestelltem Hebelmodell.</p>
+<svg class="diagram" viewBox="0 0 600 230">
+<line x1="110" y1="115" x2="490" y2="115" stroke="#263746" stroke-width="7"/>
+<line x1="110" y1="55" x2="110" y2="105" stroke="#17834b" stroke-width="5"/><polygon points="110,115 99,94 121,94" fill="#17834b"/><text x="55" y="48" font-size="15">Schraube F</text>
+<line x1="395" y1="45" x2="395" y2="105" stroke="#b42318" stroke-width="5"/><polygon points="395,115 384,94 406,94" fill="#b42318"/><text x="410" y="52" font-size="15">9000 N</text>
+<polygon points="490,120 465,165 515,165" fill="#dce5ec" stroke="#263746"/><text x="385" y="150" font-size="14">50 mm</text><text x="265" y="200" font-size="14">200 mm</text>
+</svg>
+<details><summary>Tipp</summary><p>Nutze das Momentengleichgewicht um das rechte Auflager. Achte darauf, welche Abstände die beiden Kräfte zu diesem Drehpunkt besitzen.</p></details>
+<details><summary>Lösung</summary><p>Für das in den Unterlagen verwendete Hebelmodell ergibt sich eine notwendige Schraubenkraft von <b>12 kN</b>.</p></details>
+</div>
+
+<div class="exercise">
+<span class="level">Experte</span><h3>H · Träger mit drei Einzelkräften</h3>
+<p>Ein <b>1,1 m</b> langer Träger wird durch drei Einzelkräfte belastet: F₁ = 1,5 kN bei 0,25 m von A, F₂ = 1,5 kN bei 0,50 m von A und F₃ = 2,0 kN bei 0,20 m von B. Bestimme F<sub>A</sub> und F<sub>B</sub>.</p>
+<svg class="diagram" viewBox="0 0 700 255">
+<line x1="70" y1="125" x2="630" y2="125" stroke="#263746" stroke-width="7"/><polygon points="90,130 65,175 115,175" fill="#dce5ec" stroke="#263746"/><polygon points="610,130 585,175 635,175" fill="#dce5ec" stroke="#263746"/>
+<line x1="208" y1="50" x2="208" y2="115" stroke="#b42318" stroke-width="4"/><polygon points="208,125 198,105 218,105" fill="#b42318"/>
+<line x1="326" y1="50" x2="326" y2="115" stroke="#b42318" stroke-width="4"/><polygon points="326,125 316,105 336,105" fill="#b42318"/>
+<line x1="516" y1="50" x2="516" y2="115" stroke="#b42318" stroke-width="4"/><polygon points="516,125 506,105 526,105" fill="#b42318"/>
+<text x="180" y="42" font-size="14">F₁=1,5 kN</text><text x="298" y="42" font-size="14">F₂=1,5 kN</text><text x="490" y="42" font-size="14">F₃=2 kN</text>
+<text x="145" y="155" font-size="13">0,25 m</text><text x="275" y="155" font-size="13">0,50 m</text><text x="515" y="155" font-size="13">0,20 m bis B</text><text x="320" y="215" font-size="14">l = 1,1 m</text>
+</svg>
+<details><summary>Zwischenergebnis</summary><p>Abstand von F₃ zu A: 1,1 m − 0,2 m = 0,9 m. Damit: F<sub>B</sub> · 1,1 = 1,5·0,25 + 1,5·0,50 + 2,0·0,90.</p></details>
+<details><summary>Lösung</summary><p>F<sub>B</sub> ≈ <b>2,659 kN</b>; aus ΣF<sub>y</sub> = 0 folgt F<sub>A</sub> ≈ <b>2,341 kN</b>.</p></details>
+</div>
+</div>
+</section>
+
+<section id="werkstatt" class="card">
+<h2>6. Übungswerkstatt – trainiere den Lösungsweg</h2>
+<p>Die Abbildungen sind Teil der Aufgabe. Erstelle zu jeder Aufgabe zuerst selbst einen Freischnitt und schreibe anschließend die Gleichgewichtsbedingungen auf.</p>
+<div class="grid">
+<div class="exercise"><h3>Ü1 · Außermittige Last</h3>
+<svg class="diagram" viewBox="0 0 520 210"><line x1="60" y1="105" x2="460" y2="105" stroke="#263746" stroke-width="7"/><polygon points="80,110 55,150 105,150" fill="#dce5ec" stroke="#263746"/><polygon points="440,110 415,150 465,150" fill="#dce5ec" stroke="#263746"/><line x1="152" y1="35" x2="152" y2="95" stroke="#b42318" stroke-width="5"/><polygon points="152,105 141,85 163,85" fill="#b42318"/><text x="170" y="45" font-size="15">2 kN</text><text x="105" y="175" font-size="13">1 m</text><text x="275" y="195" font-size="13">l = 5 m</text></svg>
+<p>l = 5 m, F = 2 kN, a = 1 m von A. Berechne beide Lagerkräfte.</p><details><summary>Tipp</summary><p>F<sub>B</sub> = F·a/l.</p></details><details><summary>Lösung</summary><p>F<sub>B</sub> = 0,4 kN; F<sub>A</sub> = 1,6 kN.</p></details></div>
+
+<div class="exercise"><h3>Ü2 · Symmetrische Belastung</h3>
+<svg class="diagram" viewBox="0 0 520 210"><line x1="60" y1="105" x2="460" y2="105" stroke="#263746" stroke-width="7"/><polygon points="80,110 55,150 105,150" fill="#dce5ec" stroke="#263746"/><polygon points="440,110 415,150 465,150" fill="#dce5ec" stroke="#263746"/><line x1="260" y1="35" x2="260" y2="95" stroke="#b42318" stroke-width="5"/><polygon points="260,105 249,85 271,85" fill="#b42318"/><text x="278" y="45" font-size="15">3 kN</text><text x="235" y="190" font-size="13">l = 6 m</text></svg>
+<p>Eine Kraft von 3 kN wirkt genau mittig auf einen 6 m langen Träger. Bestimme die Lagerkräfte und begründe ohne ausführliche Rechnung.</p><details><summary>Lösung</summary><p>Wegen der Symmetrie: F<sub>A</sub> = F<sub>B</sub> = 1,5 kN.</p></details></div>
+
+<div class="exercise"><h3>Ü3 · Zwei Einzelkräfte</h3>
+<svg class="diagram" viewBox="0 0 520 220"><line x1="60" y1="110" x2="460" y2="110" stroke="#263746" stroke-width="7"/><polygon points="80,115 55,155 105,155" fill="#dce5ec" stroke="#263746"/><polygon points="440,115 415,155 465,155" fill="#dce5ec" stroke="#263746"/><line x1="170" y1="40" x2="170" y2="100" stroke="#b42318" stroke-width="4"/><polygon points="170,110 160,90 180,90" fill="#b42318"/><line x1="350" y1="40" x2="350" y2="100" stroke="#b42318" stroke-width="4"/><polygon points="350,110 340,90 360,90" fill="#b42318"/><text x="130" y="32" font-size="14">800 N</text><text x="320" y="32" font-size="14">1200 N</text><text x="130" y="180" font-size="13">1 m</text><text x="330" y="180" font-size="13">3 m</text><text x="235" y="205" font-size="13">l = 4 m</text></svg>
+<p>F₁ = 800 N bei 1 m, F₂ = 1200 N bei 3 m von A. Bestimme F<sub>A</sub> und F<sub>B</sub>.</p><details><summary>Lösung</summary><p>F<sub>B</sub> = 1100 N; F<sub>A</sub> = 900 N.</p></details></div>
+
+<div class="exercise"><h3>Ü4 · Maschine auf Träger</h3>
+<svg class="diagram" viewBox="0 0 520 220"><line x1="60" y1="115" x2="460" y2="115" stroke="#263746" stroke-width="7"/><rect x="215" y="55" width="90" height="55" rx="5" fill="#d9b36c" stroke="#263746"/><text x="226" y="88" font-size="14">240 kg</text><polygon points="80,120 55,160 105,160" fill="#dce5ec" stroke="#263746"/><polygon points="440,120 415,160 465,160" fill="#dce5ec" stroke="#263746"/></svg>
+<p>Eine Maschine mit 240 kg steht mittig auf einem Träger. Berechne zuerst die Gewichtskraft und anschließend die Lagerkräfte.</p><details><summary>Lösung</summary><p>F<sub>G</sub> = 2354,4 N; F<sub>A</sub> = F<sub>B</sub> = 1177,2 N.</p></details></div>
+
+<div class="exercise"><h3>Ü5 · Drei Kräfte – selbstständig</h3>
+<svg class="diagram" viewBox="0 0 560 225"><line x1="55" y1="115" x2="505" y2="115" stroke="#263746" stroke-width="7"/><polygon points="75,120 50,160 100,160" fill="#dce5ec" stroke="#263746"/><polygon points="485,120 460,160 510,160" fill="#dce5ec" stroke="#263746"/>
+<g stroke="#b42318" stroke-width="4" fill="#b42318"><line x1="155" y1="45" x2="155" y2="105"/><polygon points="155,115 145,95 165,95"/><line x1="280" y1="45" x2="280" y2="105"/><polygon points="280,115 270,95 290,95"/><line x1="405" y1="45" x2="405" y2="105"/><polygon points="405,115 395,95 415,95"/></g>
+<text x="125" y="35" font-size="13">1 kN</text><text x="250" y="35" font-size="13">2 kN</text><text x="375" y="35" font-size="13">1,5 kN</text><text x="115" y="185" font-size="12">1 m</text><text x="250" y="185" font-size="12">2,5 m</text><text x="380" y="185" font-size="12">4 m</text><text x="250" y="210" font-size="12">l = 5 m</text></svg>
+<p>Bestimme die beiden Auflagerkräfte. F₁ = 1 kN bei 1 m, F₂ = 2 kN bei 2,5 m, F₃ = 1,5 kN bei 4 m; l = 5 m.</p><details><summary>Tipp</summary><p>F<sub>B</sub>·5 = 1·1 + 2·2,5 + 1,5·4.</p></details><details><summary>Lösung</summary><p>F<sub>B</sub> = 2,4 kN; F<sub>A</sub> = 2,1 kN.</p></details></div>
+
+<div class="exercise"><h3>Ü6 · Vorzeichen verstehen</h3>
+<svg class="diagram" viewBox="0 0 520 220"><line x1="80" y1="110" x2="455" y2="110" stroke="#263746" stroke-width="7"/><polygon points="120,115 95,155 145,155" fill="#dce5ec" stroke="#263746"/><polygon points="360,115 335,155 385,155" fill="#dce5ec" stroke="#263746"/><line x1="445" y1="40" x2="445" y2="100" stroke="#b42318" stroke-width="5"/><polygon points="445,110 434,90 456,90" fill="#b42318"/><text x="395" y="32" font-size="14">Last</text><text x="382" y="180" font-size="13">Überhang</text></svg>
+<p>Eine Last wirkt rechts außerhalb des Lagers B. Erkläre ohne Zahlen, warum an einem Lager eine Reaktionskraft nach unten erforderlich sein kann.</p><details><summary>Lösungsidee</summary><p>Die Last auf dem Überhang erzeugt ein Drehmoment. Damit das System im Gleichgewicht bleibt, muss das Lagerpaar ein Gegenmoment erzeugen. Dadurch kann die Reaktion an einem Lager der zunächst angenommenen Aufwärtsrichtung entgegengesetzt sein.</p></details></div>
+</div>
+</section>
+
+<section id="quiz" class="card">
+<h2>7. Expertencheck</h2>
+<p>Der Test prüft nicht nur Formeln, sondern auch den Lösungsweg und die technische Interpretation.</p>
+<div class="progress"><span id="bar"></span></div>
+<form id="quizForm">
+<div class="quiz-q"><b>1. Was gehört beim Freischneiden in das Freikörperbild?</b>
+<label><input type="radio" name="q1" value="a"> Nur bekannte Kräfte</label><label><input type="radio" name="q1" value="b"> Alle äußeren Kräfte und die durch Lager ersetzten Reaktionsgrößen</label><label><input type="radio" name="q1" value="c"> Nur die Lagerkräfte</label></div>
+<div class="quiz-q"><b>2. Warum ist Lager A oft ein günstiger Momentenpunkt?</b>
+<label><input type="radio" name="q2" value="a"> Weil F_A dort den Hebelarm 0 hat</label><label><input type="radio" name="q2" value="b"> Weil dort immer die größte Kraft wirkt</label><label><input type="radio" name="q2" value="c"> Weil Momente nur um A gebildet werden dürfen</label></div>
+<div class="quiz-q"><b>3. 70 kg entsprechen näherungsweise welcher Gewichtskraft?</b>
+<label><input type="radio" name="q3" value="a"> 70 N</label><label><input type="radio" name="q3" value="b"> 686,7 N</label><label><input type="radio" name="q3" value="c"> 6867 N</label></div>
+<div class="quiz-q"><b>4. Eine Einzelkraft wirkt mittig zwischen A und B. Was gilt?</b>
+<label><input type="radio" name="q4" value="a"> F_A = F_B = F/2</label><label><input type="radio" name="q4" value="b"> F_A = F, F_B = 0</label><label><input type="radio" name="q4" value="c"> Beide Lagerkräfte sind 0</label></div>
+<div class="quiz-q"><b>5. Bei mehreren senkrechten Kräften gilt um A:</b>
+<label><input type="radio" name="q5" value="a"> F_B·l = Σ(F_i·a_i)</label><label><input type="radio" name="q5" value="b"> F_B = ΣF_i·l</label><label><input type="radio" name="q5" value="c"> ΣM_A muss nicht 0 sein</label></div>
+<div class="quiz-q"><b>6. Was bedeutet eine negative Lagerkraft?</b>
+<label><input type="radio" name="q6" value="a"> Immer Rechenfehler</label><label><input type="radio" name="q6" value="b"> Tatsächliche Richtung entgegen der angenommenen positiven Richtung</label><label><input type="radio" name="q6" value="c"> Masse ist negativ</label></div>
+<button type="submit">Expertencheck auswerten</button><button type="button" class="secondary" id="resetQuiz">Zurücksetzen</button>
+</form><div id="quizResult" class="result" aria-live="polite">Noch nicht ausgewertet.</div>
+</section>
+
+<section class="card">
+<h2>8. Experten-Checkliste für jede Aufgabe</h2>
+<ul class="checklist">
+<li>☐ Habe ich das richtige Bauteil freigeschnitten?</li>
+<li>☐ Sind alle äußeren Kräfte und Lagerreaktionen eingezeichnet?</li>
+<li>☐ Habe ich Massen zuerst in Gewichtskräfte umgerechnet?</li>
+<li>☐ Sind alle Hebelarme senkrecht zur Wirkungslinie der Kraft bestimmt?</li>
+<li>☐ Habe ich eine Vorzeichenkonvention für Kräfte und Momente festgelegt?</li>
+<li>☐ Habe ich einen günstigen Momentenpunkt gewählt?</li>
+<li>☐ Sind Einheiten innerhalb der Momentengleichung konsistent?</li>
+<li>☐ Habe ich die zweite Lagerkraft mit dem Kräftegleichgewicht berechnet?</li>
+<li>☐ Habe ich mein Ergebnis durch Kräfte- oder Momentengleichgewicht kontrolliert?</li>
+<li>☐ Kann ich die Richtung und Größe der Lagerkräfte technisch erklären?</li>
+</ul>
+<div class="note"><b>Dokumentation:</b> gegeben → gesucht → Freischnitt → Gleichgewichtsbedingungen → Umstellen → Einsetzen mit Einheiten → Ergebnis → Kontrolle → technische Aussage.</div>
+</section>
+</main>
+<footer>Auflagerkräfte · Technische Mechanik · interaktiver Lernpfad</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+function arrow(x,y1,y2,color,label,up=false){
+ const tip=up?y2:y2, base=up?y2+18:y2-18;
+ return `<line x1="${x}" y1="${y1}" x2="${x}" y2="${y2}" stroke="${color}" stroke-width="4"/>
+ <polygon points="${x},${tip} ${x-9},${base} ${x+9},${base}" fill="${color}"/>
+ <text x="${x+10}" y="${Math.min(y1,y2)-5}" font-size="13">${label}</text>`;
+}
+function drawSingle(F,L,a,FA,FB){
+ const svg=$('beamSvg'),xA=70,xB=550,y=125,span=xB-xA,xF=xA+span*(a/L);
+ svg.innerHTML=`<line x1="${xA}" y1="${y}" x2="${xB}" y2="${y}" stroke="#263746" stroke-width="7"/>
+ <polygon points="${xA},130 ${xA-24},170 ${xA+24},170" fill="#dce5ec" stroke="#263746"/>
+ <polygon points="${xB},130 ${xB-24},165 ${xB+24},165" fill="#dce5ec" stroke="#263746"/>
+ ${arrow(xF,45,115,'#b42318','F='+F.toFixed(0)+' N')}
+ <line x1="${xA}" y1="118" x2="${xA}" y2="72" stroke="#17834b" stroke-width="4"/><polygon points="${xA},58 ${xA-9},78 ${xA+9},78" fill="#17834b"/>
+ <line x1="${xB}" y1="118" x2="${xB}" y2="72" stroke="#17834b" stroke-width="4"/><polygon points="${xB},58 ${xB-9},78 ${xB+9},78" fill="#17834b"/>
+ <text x="10" y="52" font-size="13">FA=${FA.toFixed(1)} N</text><text x="475" y="52" font-size="13">FB=${FB.toFixed(1)} N</text>
+ <text x="${Math.max(75,xF/2)}" y="205" font-size="13">a=${a.toFixed(2)} m</text><text x="265" y="230" font-size="13">l=${L.toFixed(2)} m</text>`;
+}
+function calcSingle(){
+ let F=+($('force').value),L=+($('length').value),a=+($('pos').value);
+ $('pos').max=Math.max(L,0.01); if(a>L){a=L;$('pos').value=L}$('posOut').textContent=a.toFixed(2);
+ if(!Number.isFinite(F)||!Number.isFinite(L)||F<0||L<=0||a<0||a>L){$('calcResult').className='result bad';$('calcResult').textContent='Ungültige Eingabe.';return}
+ let FB=F*a/L,FA=F-FB;
+ $('calcResult').className='result good';
+ $('calcResult').innerHTML=`<b>1. Moment um A:</b> F·a = F<sub>B</sub>·l → F<sub>B</sub> = ${FB.toFixed(2)} N<br>
+ <b>2. Kräftegleichgewicht:</b> F<sub>A</sub> + F<sub>B</sub> − F = 0 → F<sub>A</sub> = ${FA.toFixed(2)} N<br>
+ <b>3. Kontrolle:</b> ${FA.toFixed(2)} + ${FB.toFixed(2)} = ${(FA+FB).toFixed(2)} N = F`;
+ drawSingle(F,L,a,FA,FB);
+}
+['force','length','pos'].forEach(id=>$(id).addEventListener('input',calcSingle));
+$('calc').addEventListener('click',calcSingle);
+$('center').addEventListener('click',()=>{let L=+($('length').value)||4;$('pos').value=L/2;calcSingle()});
+calcSingle();
+
+$('tabSingle').addEventListener('click',()=>{$('singlePanel').hidden=false;$('multiPanel').hidden=true;$('tabSingle').classList.add('active');$('tabMulti').classList.remove('active')});
+$('tabMulti').addEventListener('click',()=>{$('singlePanel').hidden=true;$('multiPanel').hidden=false;$('tabMulti').classList.add('active');$('tabSingle').classList.remove('active');drawMulti()});
+
+let loads=[{F:1000,a:1},{F:1500,a:3}];
+function renderLoads(){
+ const box=$('loads');box.innerHTML='';
+ loads.forEach((o,i)=>{
+  const row=document.createElement('div');row.className='load-row';
+  row.innerHTML=`<div><label>Kraft F${i+1} [N]</label><input class="lf" data-i="${i}" type="number" min="0" value="${o.F}"></div>
+  <div><label>Position a${i+1} von A [m]</label><input class="la" data-i="${i}" type="number" min="0" step="0.1" value="${o.a}"></div>
+  <button type="button" class="ghost remove" data-i="${i}" ${loads.length<=1?'disabled':''}>Entfernen</button>`;
+  box.appendChild(row);
+ });
+ box.querySelectorAll('.lf').forEach(el=>el.addEventListener('input',e=>{loads[+e.target.dataset.i].F=+e.target.value;drawMulti()}));
+ box.querySelectorAll('.la').forEach(el=>el.addEventListener('input',e=>{loads[+e.target.dataset.i].a=+e.target.value;drawMulti()}));
+ box.querySelectorAll('.remove').forEach(el=>el.addEventListener('click',e=>{if(loads.length>1){loads.splice(+e.target.dataset.i,1);renderLoads();drawMulti()}}));
+}
+function drawMulti(){
+ let L=+$('multiLength').value;
+ if(!Number.isFinite(L)||L<=0){$('multiResult').className='result bad';$('multiResult').textContent='Lagerabstand muss größer als 0 sein.';return}
+ let valid=loads.every(o=>Number.isFinite(o.F)&&Number.isFinite(o.a)&&o.F>=0&&o.a>=0&&o.a<=L);
+ if(!valid){$('multiResult').className='result bad';$('multiResult').textContent='Alle Kräfte müssen ≥ 0 sein und ihre Position muss zwischen A und B liegen.';return}
+ let sumF=loads.reduce((s,o)=>s+o.F,0),sumM=loads.reduce((s,o)=>s+o.F*o.a,0),FB=sumM/L,FA=sumF-FB;
+ $('multiResult').className='result good';
+ let terms=loads.map((o,i)=>`F${i+1}·a${i+1} = ${o.F.toFixed(0)}·${o.a.toFixed(2)}`).join(' + ');
+ $('multiResult').innerHTML=`<b>Momentengleichgewicht um A:</b><br>F<sub>B</sub>·${L.toFixed(2)} = ${terms}<br>
+ Σ(Fᵢ·aᵢ) = ${sumM.toFixed(2)} N·m → <b>F<sub>B</sub> = ${FB.toFixed(2)} N</b><br>
+ <b>Kräftegleichgewicht:</b> F<sub>A</sub> = ΣFᵢ − F<sub>B</sub> = ${sumF.toFixed(2)} − ${FB.toFixed(2)} = <b>${FA.toFixed(2)} N</b>`;
+ const svg=$('multiSvg'),xA=70,xB=630,y=145,span=xB-xA;
+ let s=`<line x1="${xA}" y1="${y}" x2="${xB}" y2="${y}" stroke="#263746" stroke-width="7"/>
+ <polygon points="${xA},150 ${xA-24},190 ${xA+24},190" fill="#dce5ec" stroke="#263746"/>
+ <polygon points="${xB},150 ${xB-24},185 ${xB+24},185" fill="#dce5ec" stroke="#263746"/>
+ <line x1="${xA}" y1="138" x2="${xA}" y2="92" stroke="#17834b" stroke-width="4"/><polygon points="${xA},78 ${xA-9},98 ${xA+9},98" fill="#17834b"/>
+ <line x1="${xB}" y1="138" x2="${xB}" y2="92" stroke="#17834b" stroke-width="4"/><polygon points="${xB},78 ${xB-9},98 ${xB+9},98" fill="#17834b"/>
+ <text x="8" y="70" font-size="13">FA=${FA.toFixed(1)} N</text><text x="545" y="70" font-size="13">FB=${FB.toFixed(1)} N</text>`;
+ loads.forEach((o,i)=>{let x=xA+span*(o.a/L),top=25+(i%2)*25;s+=`<line x1="${x}" y1="${top}" x2="${x}" y2="135" stroke="#b42318" stroke-width="4"/><polygon points="${x},145 ${x-9},125 ${x+9},125" fill="#b42318"/><text x="${Math.min(x+8,610)}" y="${top+12}" font-size="12">F${i+1}=${o.F.toFixed(0)} N @ ${o.a.toFixed(2)} m</text>`});
+ s+=`<text x="295" y="245" font-size="13">l=${L.toFixed(2)} m</text>`;
+ svg.innerHTML=s;
+}
+$('addLoad').addEventListener('click',()=>{if(loads.length<6){loads.push({F:500,a:Math.min(+$('multiLength').value,1)});renderLoads();drawMulti()}});
+$('multiCalc').addEventListener('click',drawMulti);$('multiLength').addEventListener('input',drawMulti);
+$('exampleLoads').addEventListener('click',()=>{$('multiLength').value=1.1;loads=[{F:1500,a:.25},{F:1500,a:.5},{F:2000,a:.9}];renderLoads();drawMulti()});
+renderLoads();drawMulti();
+
+const answers={q1:'b',q2:'a',q3:'b',q4:'a',q5:'a',q6:'b'};
+$('quizForm').addEventListener('submit',e=>{
+ e.preventDefault();let score=0,done=0;
+ Object.entries(answers).forEach(([q,a])=>{let el=document.querySelector(`input[name="${q}"]:checked`);if(el){done++;if(el.value===a)score++}});
+ $('bar').style.width=(done/6*100)+'%';let r=$('quizResult');r.className='result '+(score>=5?'good':'bad');
+ r.innerHTML=`<b>${score} von 6 richtig.</b> `+(score===6?'Expertenniveau: Du beherrschst die zentralen Grundlagen und Zusammenhänge.':score>=5?'Sehr guter Stand. Prüfe die eine unsichere Stelle noch einmal.':score>=3?'Solide Basis. Wiederhole besonders Freischnitt, Hebelarm und Momentengleichgewicht.':'Gehe den Lernpfad noch einmal von Grundlagen bis zum interaktiven Labor durch.');
+});
+$('resetQuiz').addEventListener('click',()=>{$('quizForm').reset();$('bar').style.width='0';$('quizResult').className='result';$('quizResult').textContent='Noch nicht ausgewertet.'});
+</script>
+</body></html>
